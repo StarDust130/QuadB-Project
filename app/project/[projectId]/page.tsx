@@ -2,7 +2,7 @@
 
 import Loading from "@/app/_components/Loading";
 import ShowDetails from "@/app/_components/ShowDetails";
-// ProjectDetail.js
+
 
 import { useEffect, useState } from "react";
 
@@ -22,11 +22,10 @@ const ProjectDetail = ({ params }: any) => {
   }, [id]);
 
   if (!showDetails) {
-    // You can show a loading indicator or handle the loading state as needed
+   
     return <Loading />;
   }
 
-  // Render your detail page content using showDetails
 
   return (
     <div>
