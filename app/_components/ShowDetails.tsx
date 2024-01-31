@@ -40,7 +40,7 @@ const ShowDetails = ({ showData }: any) => {
     <div className="min-h-screen flex items-center justify-center mb-20">
       <div className="max-w-6xl w-full flex  flex-col lg:flex-row rounded-lg overflow-hidden">
         <div className="md:w-1/2 w-full h-full ">
-          <Breadcrumb id={id}  />
+          <Breadcrumb id={id} />
           <Image
             src={image?.original || "/no-img.jpeg"}
             alt={`${name} Poster`}
@@ -118,26 +118,26 @@ const ShowDetails = ({ showData }: any) => {
           </div>
 
           <div className="mt-6">
-            <a
+            <Link
               href={url}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 underline"
             >
               More info
-            </a>
+            </Link>
           </div>
 
           {officialSite && (
             <div className="mt-4">
-              <a
+              <Link
                 href={officialSite}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-green-500 underline"
               >
                 Official Site
-              </a>
+              </Link>
             </div>
           )}
         </div>

@@ -42,10 +42,13 @@ const Breadcrumb = ({id}:any) => {
           </li>
 
           <li>
-            <a href="/project" className="block transition hover:text-blue-700">
+            <Link
+              href="/project"
+              className="block transition hover:text-blue-700"
+            >
               {" "}
               Project{" "}
-            </a>
+            </Link>
           </li>
 
           <li className="rtl:rotate-180">
@@ -64,10 +67,10 @@ const Breadcrumb = ({id}:any) => {
           </li>
 
           <li>
-            <a href="#" className="block transition hover:text-blue-700">
+            <Link href="#" className="block transition hover:text-blue-700">
               {" "}
               {id}{" "}
-            </a>
+            </Link>
           </li>
         </ol>
       </nav>
