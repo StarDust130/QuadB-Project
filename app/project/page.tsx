@@ -16,8 +16,8 @@ const MyCoolCardUI = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
- const handleButtonClick = (showId) => {
-   // Your logic for handling button click, e.g., navigation to a detailed summary screen
+ const handleButtonClick = (showId: any) => {
+
    router.push(`/project/${showId}`);
  };
 
@@ -26,7 +26,7 @@ const MyCoolCardUI = () => {
       {shows.map(({ show }) => (
         <div key={show.id} className="mb-8 mx-auto max-w-screen-md">
           {" "}
-          {/* Added margin-bottom and centered using mx-auto */}
+         
           <div className="relative overflow-hidden transition-transform duration-300 transform hover:-translate-x-2 hover:translate-y-2">
             <Card
               title={show.name}
