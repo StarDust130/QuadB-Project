@@ -10,21 +10,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { FaGithub } from "react-icons/fa6";
+import Logo from "./Logo";
 
 const Header = () => {
   return (
     <>
       <header className="">
         <div className="mx-auto  flex h-16 max-w-screen-2xl items-center gap-8 px-4 sm:px-6 lg:px-8 border-b shadow-lg ">
-          <Link className="block text-teal-600" href="/">
-            <span className="sr-only">Home</span>
-            <Image
-              src="/logo.png"
-              alt="logo"
-              width={80}
-              height={80}
-              className="dark:bg-white"
-            />
+          <Link className="block  " href="/">
+            <Logo />
           </Link>
 
           <div className="flex flex-1 items-center justify-end md:justify-between">
