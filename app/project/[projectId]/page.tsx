@@ -19,6 +19,7 @@ const ProjectDetail = ({ params }: any) => {
         .then((data) => setShowDetails(data))
         .catch((error) => console.error("Error fetching show details:", error));
     }
+     window.scrollTo(0, 0);
   }, [id]);
 
   if (!showDetails) {
