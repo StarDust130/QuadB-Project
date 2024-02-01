@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,13 +11,18 @@ import {
   faGlobe,
   faCalendarAlt,
   faLanguage,
-  faLink,
 } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "./Breadcrumb";
 import Link from "next/link";
 
-
 const ShowDetails = ({ showData }: any) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // Set loading to false when image data is fetched
+    }, 1000); // Simulating a 2-second delay
+  }, []);
   const {
     name,
     network,
@@ -41,13 +48,17 @@ const ShowDetails = ({ showData }: any) => {
       <div className="max-w-6xl w-full flex  flex-col lg:flex-row rounded-lg overflow-hidden">
         <div className="md:w-1/2 w-full h-full ">
           <Breadcrumb id={id} />
-          <Image
-            src={image?.original || "/no-img.jpeg"}
-            alt={`${name} Poster`}
-            className="object-fill md:h-1/2 w-full  rounded-l-lg"
-            width={300}
-            height={300}
-          />
+          {loading ? (
+            <Skeleton className="w-full h-[1000px] rounded-l-lg" />
+          ) : (
+            <Image
+              src={image?.original || "/no-img.jpeg"}
+              alt={`${name} Poster`}
+              className="object-fill md:h-1/2 w-full rounded-l-lg"
+              width={300}
+              height={300}
+            />
+          )}
         </div>
         <div className="w-full lg:w-1/3 p-8 rounded-r-lg  md:ml-20">
           <h1 className="text-4xl font-bold mb-4">{name}</h1>
@@ -153,6 +164,5 @@ const DetailWithIcon = ({ icon, label, value }: any) => (
     <span className="text-xs ml-2">{value}</span>
   </div>
 );
-
 
 export default ShowDetails;
