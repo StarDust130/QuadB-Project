@@ -45,10 +45,10 @@ const BookButton = ({
           <DrawerHeader>
             <DrawerTitle>Book Movie Ticket</DrawerTitle>
             <DrawerDescription>
-              <div className="md:max-w-screen-sm mx-auto flex border-2 border-gray-500 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 transform md:hover:scale-105">
-                <div className="flex-shrink-0 w-1/2">
+              <div className="md:max-w-screen-sm mx-auto flex border-2 border-gray-500 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 flex-col md:flex-row transform md:hover:scale-105">
+                <div className="flex-shrink-0 md:w-1/2 ">
                   <Image
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full  object-cover object-center"
                     src={img}
                     alt={name}
                     width={600}
