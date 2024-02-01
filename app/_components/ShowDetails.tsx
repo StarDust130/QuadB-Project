@@ -20,8 +20,8 @@ const ShowDetails = ({ showData }: any) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false); // Set loading to false when image data is fetched
-    }, 1000); // Simulating a 2-second delay
+      setLoading(false);
+    }, 100);
   }, []);
   const {
     name,
@@ -57,6 +57,7 @@ const ShowDetails = ({ showData }: any) => {
               className="object-fill md:h-1/2 w-full rounded-l-lg"
               width={300}
               height={300}
+              loading="lazy"
             />
           )}
         </div>
