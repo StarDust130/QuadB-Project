@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -10,11 +11,15 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import Image from "next/image";
+import { AiFillHeart } from "react-icons/ai";
 import { Toaster } from "@/components/ui/sonner";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
 import { toast } from "sonner";
+import { DatePicker } from "./DatePicker";
+
+import { useState } from "react";
 
 const BookButton = ({
   name,
@@ -24,6 +29,9 @@ const BookButton = ({
   genres,
   img,
 }: any) => {
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
+  const [username, setUserName] = useState("");
   return (
     <>
       <Drawer>
@@ -34,17 +42,20 @@ const BookButton = ({
           <DrawerHeader>
             <DrawerTitle>Book Movie Ticket</DrawerTitle>
             <DrawerDescription>
-              <div className="max-w-md mx-auto border-2 border-gray-500  rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105">
-                <Image
-                  className="w-full h-56 object-cover"
-                  src={img}
-                  alt={name}
-                  width={300}
-                  height={300}
-                />
-                <div className="p-4">
-                  <h2 className="font-bold text-xl mb-2">{name}</h2>
-                  <div className="flex items-center mb-2">
+              <div className="md:max-w-screen-sm mx-auto flex border-2 border-gray-500 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 transform md:hover:scale-105">
+                <div className="flex-shrink-0 w-1/2">
+                  <Image
+                    className="w-full h-full object-cover object-center"
+                    src={img}
+                    alt={name}
+                    width={600}
+                    height={600}
+                  />
+                </div>
+
+                <div className="flex-grow p-4">
+                  <h2 className="font-bold text-3xl mb-4">{name}</h2>
+                  <div className="flex items-center mb-4">
                     <div className="flex items-center">
                       <span className="text-yellow-500 mr-1 flex">
                         {Array.from({ length: 3 }).map((_, index) => (
@@ -60,7 +71,7 @@ const BookButton = ({
                       <span className="ml-1 text-gray-600">{language}</span>
                     </div>
                   </div>
-                  <div className="mb-2">
+                  <div className="mb-4">
                     <div className="flex items-center">
                       <FiClock className="text-gray-600" />
                       <span className="ml-1 text-gray-600">
@@ -68,7 +79,7 @@ const BookButton = ({
                       </span>
                     </div>
                   </div>
-                  <div className="flex flex-wrap">
+                  <div className="flex flex-wrap mb-4">
                     {genres.map((genre: string) => (
                       <span
                         key={genre}
@@ -78,31 +89,71 @@ const BookButton = ({
                       </span>
                     ))}
                   </div>
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="mb-4">
+                      <label className="text-gray-600 text-sm block">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        value={username}
+                        required
+                        onChange={(e) => setUserName(e.target.value)}
+                        className="w-full bg-gray-100 border text-black  rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="text-gray-600 text-sm block">
+                        Date
+                      </label>
+                      <input
+                        type="date"
+                        value={date}
+                        required
+                        onChange={(e) => setDate(e.target.value as string)}
+                        className="w-full bg-gray-100 border text-black  rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="text-gray-600 text-sm block">
+                        Time
+                      </label>
+                      <input
+                        type="time"
+                        value={time}
+                        required
+                        onChange={(e) => setTime(e.target.value)}
+                        className="w-full bg-gray-100 border text-black   rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+                      />
+                      <p className="text-gray-500 text-xs mt-1">
+                        Enter time manually if needed
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            {/* <Button>Submit</Button>
-             */}
-
             <Toaster />
 
             <DrawerClose>
               <Button
-              className="mr-2"
-                onClick={() =>
-                  toast("Ticket Booked", {
-                    description: `${name} Ticked Book Successfully`,
-                    action: {
-                      label: "Undo",
-                      onClick: () => console.log("Undo"),
-                    },
-                  })
-                }
+                className="mr-2"
+                onClick={() => {
+                  if (name && date && time) {
+                    toast("Ticket Booked", {
+                      description: `${username}. ${name} Ticket Booked Successfully on ${date} at ${time}`,
+                    });
+                  } else {
+                    // Handle the case where not all required fields are filled
+                    toast.error("Please fill in all required fields");
+                  }
+                }}
               >
                 Book Now
               </Button>
+
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
           </DrawerFooter>
