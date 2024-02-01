@@ -3,7 +3,6 @@
 import Loading from "@/app/_components/Loading";
 import ShowDetails from "@/app/_components/ShowDetails";
 
-
 import { useEffect, useState } from "react";
 
 const ProjectDetail = ({ params }: any) => {
@@ -19,14 +18,12 @@ const ProjectDetail = ({ params }: any) => {
         .then((data) => setShowDetails(data))
         .catch((error) => console.error("Error fetching show details:", error));
     }
-     window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [id]);
 
   if (!showDetails) {
-   
     return <Loading />;
   }
-
 
   return (
     <div>

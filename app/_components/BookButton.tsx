@@ -1,5 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import {
   Drawer,
   DrawerClose,
@@ -17,7 +20,7 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
 import { toast } from "sonner";
-import { DatePicker } from "./DatePicker";
+// import { DatePicker } from "./DatePicker";
 
 import { useState } from "react";
 
@@ -50,6 +53,7 @@ const BookButton = ({
                     alt={name}
                     width={600}
                     height={600}
+                    loading="lazy"
                   />
                 </div>
 
@@ -69,6 +73,7 @@ const BookButton = ({
                     <div className="ml-4 flex items-center">
                       <MdLanguage className="text-gray-600" />
                       <span className="ml-1 text-gray-600">{language}</span>
+                      <AiFillHeart className="text-red-600 ml-2" />
                     </div>
                   </div>
                   <div className="mb-4">
@@ -95,6 +100,7 @@ const BookButton = ({
                         Name
                       </label>
                       <input
+                        placeholder="Enter your name"
                         type="text"
                         value={username}
                         required
@@ -106,12 +112,14 @@ const BookButton = ({
                       <label className="text-gray-600 text-sm block">
                         Date
                       </label>
-                      <input
-                        type="date"
-                        value={date}
-                        required
-                        onChange={(e) => setDate(e.target.value )}
-                        className="w-full bg-gray-100 border text-black  rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+                      <DatePicker
+                        selected={date ? new Date(date) : null}
+                        onChange={(date: Date | null) =>
+                          setDate(date?.toString())
+                        }
+                        dateFormat="dd-MM-yyyy"
+                        className="w-full bg-gray-100 border text-black rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+                        placeholderText="Select Date"
                       />
                     </div>
                     <div className="mb-4">
@@ -145,6 +153,9 @@ const BookButton = ({
                     toast("Ticket Booked", {
                       description: `${username}. ${name} Ticket Booked Successfully on ${date} at ${time}`,
                     });
+                    setUserName("");
+                    setDate("");
+                    setTime("");
                   } else {
                     // Handle the case where not all required fields are filled
                     toast.error("Please fill in all required fields");
