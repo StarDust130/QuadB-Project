@@ -29,9 +29,9 @@ const BookButton = ({
   genres,
   img,
 }: any) => {
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
-  const [username, setUserName] = useState("");
+  const [date, setDate] = useState<string>();
+  const [time, setTime] = useState<string>();
+  const [username, setUserName] = useState<string>("");
   return (
     <>
       <Drawer>
@@ -110,7 +110,7 @@ const BookButton = ({
                         type="date"
                         value={date}
                         required
-                        onChange={(e) => setDate(e.target.value as string)}
+                        onChange={(e) => setDate(e.target.value )}
                         className="w-full bg-gray-100 border text-black  rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
                       />
                     </div>
