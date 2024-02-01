@@ -15,6 +15,8 @@ import {
 import Breadcrumb from "./Breadcrumb";
 import Link from "next/link";
 
+import BookButton from "./BookButton";
+
 const ShowDetails = ({ showData }: any) => {
   const [loading, setLoading] = useState(true);
 
@@ -63,14 +65,20 @@ const ShowDetails = ({ showData }: any) => {
         </div>
         <div className="w-full lg:w-1/3 p-8 rounded-r-lg  md:ml-20">
           <h1 className="text-4xl font-bold mb-4">{name}</h1>
-
           <div className="flex items-center mb-4">
             <FontAwesomeIcon icon={faTv} className="mr-2" />
             <span>ID: {id}</span>
           </div>
-
+          <BookButton
+            name={name}
+            rating={rating?.average || "N/A"}
+            language={language}
+            averageRuntime={averageRuntime}
+            genres={genres}
+            img={image?.original || "/no-img.jpeg"}
+          />
           <div
-            className="mb-6 overflow-auto"
+            className="mb-6 mt-3 overflow-auto"
             dangerouslySetInnerHTML={{ __html: summary }}
           />
 
@@ -128,7 +136,6 @@ const ShowDetails = ({ showData }: any) => {
               value={webChannel?.name || "N/A"}
             />
           </div>
-
           <div className="mt-6">
             <Link
               href={url}
@@ -139,7 +146,6 @@ const ShowDetails = ({ showData }: any) => {
               More info
             </Link>
           </div>
-
           {officialSite && (
             <div className="mt-4">
               <Link
